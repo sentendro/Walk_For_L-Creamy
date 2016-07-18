@@ -15,8 +15,8 @@ public class C_Refrig : MonoBehaviour {
         M_Player = GameObject.Find("M_Player");
         V_Refrig = GameObject.Find("V_Refrig");
 
-        _step = 0;
-        _power = 0;
+        this._step = 0;
+        this._power = 0;
 	}
 
     void setStep(int givenStep)
@@ -41,10 +41,10 @@ public class C_Refrig : MonoBehaviour {
             M_Walker.SendMessage("setStep");
         //2
         if(M_Player != null)
-            M_Player.SendMessage("getPower",_step);
+            M_Player.SendMessage("getPower",this._step);
         //3
         if(V_Refrig != null)
-            V_Refrig.SendMessage("showPower",_power);
+            V_Refrig.SendMessage("showPower",this._power);
         
     }
 }

@@ -9,23 +9,23 @@ public class M_Player : MonoBehaviour {
 
     void Start()
     {
-        _Gold = 0;
-        _Power = 0;
-        _lastStep = 0;
+        this._Gold = 0;
+        this._Power = 0;
+        this._lastStep = 0;
         
         C_Refrig = GameObject.Find("C_Refrig");
     }
     //Controller에서 부를 것이니...
     void setLastStep(int givenStep)
     {
-        _lastStep = givenStep;
+        this._lastStep = givenStep;
     }
     void getPower(int givenStep)
     {
         CalcPower(givenStep);
         if (C_Refrig != null)
         {
-            C_Refrig.SendMessage("setPower", _Power);
+            C_Refrig.SendMessage("setPower", this._Power);
         }
     }
    

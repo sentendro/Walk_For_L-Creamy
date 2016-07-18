@@ -8,14 +8,14 @@ public class M_Walker : MonoBehaviour
     
     void Start()
     {
-        _step = 0;
+        this._step = 0;
         
         C_Refrig = GameObject.Find("C_Refrig");
     }
     void getStep()
     {
         if(C_Refrig != null)
-            C_Refrig.SendMessage("setStep", _step);
+            C_Refrig.SendMessage("setStep", this._step);
 
             
     }
