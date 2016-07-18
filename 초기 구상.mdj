@@ -3304,7 +3304,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "M_Refrigirator",
+											"text": "M_Refrigerator",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -7154,7 +7154,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "M_Refrigirator",
+					"name": "M_Refrigerator",
 					"visibility": "public",
 					"attributes": [
 						{
@@ -7412,6 +7412,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
@@ -7429,6 +7430,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
