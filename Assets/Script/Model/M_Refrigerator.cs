@@ -8,6 +8,20 @@ public class M_Refrigerator: MonoBehaviour
     int _Type;
     int _Level;
 
-    //2
+    void CalcBattery()
+    {
 
+    }
+    void CalcTemparature()
+    {
+
+    }
+    void CalcType()
+    {
+
+    }
+    void CalcLevel()
+    {
+
+    }
 }
