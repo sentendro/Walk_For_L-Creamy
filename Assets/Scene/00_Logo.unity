@@ -873,7 +873,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6681b6902ad2ac64d8322f57db5030ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneController: {fileID: 798214447}
 --- !u!4 &1709036002
 Transform:
   m_ObjectHideFlags: 0
@@ -895,6 +894,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1769864758}
+  - 114: {fileID: 1769864759}
   m_Layer: 0
   m_Name: DontDestroy
   m_TagString: Untagged
@@ -921,6 +921,17 @@ Transform:
   - {fileID: 798214448}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1769864759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769864757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3663149a1f935794ea759431c1ce555e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1813712164
 GameObject:
   m_ObjectHideFlags: 0
