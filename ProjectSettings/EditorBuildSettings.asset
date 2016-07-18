@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SCENE/00_Logo.unity
+    path: Assets/Scene/00_Logo.unity
   - enabled: 1
-    path: Assets/SCENE/01_Refrig.unity
+    path: Assets/Scene/01_Refrig.unity
   - enabled: 1
-    path: Assets/SCENE/02_MyPage.unity
+    path: Assets/Scene/02_MyPage.unity
   - enabled: 1
-    path: Assets/SCENE/02_Setting.unity
+    path: Assets/Scene/02_Setting.unity
   - enabled: 1
-    path: Assets/SCENE/02_Shop.unity
+    path: Assets/Scene/02_Shop.unity
