@@ -3,22 +3,21 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class V_EventHandler : MonoBehaviour {
-    public GameObject SceneController;
+    private GameObject SceneController;
 
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        SceneController = GameObject.Find("C_SceneController");
     }
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            string SelectedButton = EventSystem.current.currentSelectedGameObject.name;
-
-            //빈곳을 클릭한게 아닐 때
-            if(!SelectedButton.Equals(null))
+            if(EventSystem.current.currentSelectedGameObject != null) {
+                string SelectedButton = EventSystem.current.currentSelectedGameObject.name;
+                print("hi");
                 SceneController.SendMessage("SceneMove", SelectedButton);
+            }
         }
     }
 }

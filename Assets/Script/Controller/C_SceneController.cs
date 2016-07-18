@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class C_SceneController : MonoBehaviour {
 
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     void SceneMove(string name)
     {
