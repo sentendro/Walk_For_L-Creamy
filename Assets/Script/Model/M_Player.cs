@@ -5,12 +5,30 @@ public class M_Player : MonoBehaviour {
     int _Gold;
     int _Power;
     int _lastStep;
+    private GameObject C_Refrig;
 
+    void Start()
+    {
+        _Gold = 0;
+        _Power = 0;
+        _lastStep = 0;
+        
+        C_Refrig = GameObject.Find("C_Refrig");
+    }
     //Controller에서 부를 것이니...
     void setLastStep(int givenStep)
     {
-        this._lastStep = givenStep;
+        _lastStep = givenStep;
     }
+    void getPower(int givenStep)
+    {
+        CalcPower(givenStep);
+        if (C_Refrig != null)
+        {
+            C_Refrig.SendMessage("setPower", _Power);
+        }
+    }
+   
 
     //골드 계산방법 
     int CalcGold()
@@ -19,8 +37,8 @@ public class M_Player : MonoBehaviour {
     }
 
     //전력 계산방법 : 현재 전력 + (현재 걸음 수 - 마지막 걸음 수)
-    int CalcPower(int currentStep)
+    void CalcPower(int currentStep)
     {
-        return this._Power + (currentStep - this._lastStep);
+        _Power = _Power + (currentStep - _lastStep);
     }
 }
