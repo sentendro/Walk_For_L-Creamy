@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
+[Serializable]
 public class M_Player : MonoBehaviour {
     int _Gold;
     int _Power;
