@@ -38,7 +38,7 @@ public class C_Refrig : MonoBehaviour {
 
         //1
         if(M_Walker != null)
-            M_Walker.SendMessage("setStep");
+            M_Walker.SendMessage("getStep");
         //2
         if(M_Player != null)
             M_Player.SendMessage("getPower",this._step);
