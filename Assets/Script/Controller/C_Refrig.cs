@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class C_Refrig : MonoBehaviour {
@@ -6,7 +7,9 @@ public class C_Refrig : MonoBehaviour {
     private GameObject M_Player;
     private GameObject M_Refrigerator;
     private GameObject V_Refrig;
-    
+    public Text Gold;
+    public Text Power;
+
     private int _step;
     private int _time;
     private int _power;
@@ -14,18 +17,27 @@ public class C_Refrig : MonoBehaviour {
     
 
 	// Update is called once per frame
-	void Update () {
+	void Start () {
 
         M_Walker = GameObject.Find("M_Walker");
         M_Player = GameObject.Find("M_Player");
         M_Refrigerator = GameObject.Find("M_Refrigerator");
         V_Refrig = GameObject.Find("V_Refrig");
 
+
         this._step = 0;
         this._power = 0;
         this._time = 0;
         this._battery = 0;
 	}
+    void Update()
+    {
+        
+        //renewalPower();
+        //renewalGold();
+        renewalBattery();
+        Power.text = this._battery.ToString();
+    }
 
     void setStep(int givenStep)
     {
@@ -69,9 +81,14 @@ public class C_Refrig : MonoBehaviour {
          * 3. V_Refrig에 Battery를 주고 Battery를 갱신시킨다.
          */
         //1
-        M_Walker.SendMessage("getTime");
+        if (M_Walker != null)
+            M_Walker.SendMessage("getTime");
+        else
+            print("hi");
         //2
-        M_Refrigerator.SendMessage("CalcBattery", this._time);
+        if (M_Refrigerator != null)
+            M_Refrigerator.SendMessage("CalcBattery", this._time);
+        else
         //3
         V_Refrig.SendMessage("showBattery", this._battery);
     }
