@@ -22,14 +22,7 @@ public class M_Player : MonoBehaviour {
     {
         this._lastStep = givenStep;
     }
-    void getPower(int givenStep)
-    {
-        CalcPower(givenStep);
-        if (C_Refrig != null)
-        {
-            C_Refrig.SendMessage("setPower", this._Power);
-        }
-    }
+    
    
 
     //골드 계산방법 
@@ -41,6 +34,7 @@ public class M_Player : MonoBehaviour {
     //전력 계산방법 : 현재 전력 + (현재 걸음 수 - 마지막 걸음 수)
     void CalcPower(int currentStep)
     {
-        _Power = _Power + (currentStep - _lastStep);
+        this._Power = this._Power + (currentStep - _lastStep);
+        C_Refrig.SendMessage("setPower", this._Power);
     }
 }
