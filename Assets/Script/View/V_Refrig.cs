@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class V_Refrig : MonoBehaviour {
-    
+    public Text Gold;
+    public Text Power;
+    public Text Battery;
 
     void showPower(int givenPower)
     {
-        //Power를 변경시킨다.
+        Power.text = givenPower.ToString();
     }
-    void showBattery(C_Refrig script)
+    void showGold(int givenGold)
     {
-        print("showBattery");
+
+    }
+    void showBattery(int givenBattery)
+    {
+        Gold.text = givenBattery.ToString();
+        Battery.text = givenBattery.ToString();
     }
 }

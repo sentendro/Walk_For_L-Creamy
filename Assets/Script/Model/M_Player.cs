@@ -36,6 +36,6 @@ public class M_Player : MonoBehaviour {
     {
         this._Power = this._Power + (script._step - _lastStep);
         script._power = this._Power;
-        
+        setLastStep(script._step);
     }
 }

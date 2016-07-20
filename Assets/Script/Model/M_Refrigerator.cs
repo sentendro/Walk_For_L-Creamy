@@ -22,10 +22,16 @@ public class M_Refrigerator : MonoBehaviour
         this._Type = 0;
         this._Level = 0;
     }
+    void setLastTime(int givenTime)
+    {
+        this._lastTime = givenTime;
+    }
     void CalcBattery(C_Refrig script)
     {
+        print(script._time);
         this._Battery = this._Battery + (script._time - this._lastTime);
         script._battery = this._Battery;
+        setLastTime(script._time);
     }
     void CalcTemparature()
     {

@@ -7,8 +7,6 @@ public class C_Refrig : MonoBehaviour {
     private GameObject M_Player;
     private GameObject M_Refrigerator;
     private GameObject V_Refrig;
-    public Text Gold;
-    public Text Power;
 
     public int _step;
     public int _time;
@@ -33,10 +31,10 @@ public class C_Refrig : MonoBehaviour {
     void Update()
     {
         
-        //renewalPower();
-        //renewalGold();
+        renewalPower();
         renewalBattery();
-        Power.text = this._battery.ToString();
+
+        
     }
 
     void setStep(int givenStep)
@@ -84,7 +82,6 @@ public class C_Refrig : MonoBehaviour {
         if (M_Walker != null)
         {
             M_Walker.SendMessage("getTime",this);
-            print(this._time);
         }
         else
             print("M_Walker is missing");
@@ -95,8 +92,14 @@ public class C_Refrig : MonoBehaviour {
             print("M_Refrigerator is missing");
         //3
         if (V_Refrig != null)
-            V_Refrig.SendMessage("showBattery", this);
+            V_Refrig.SendMessage("showBattery", this._battery);
         else
             print("V_Refrig is missing");
+    }
+    void renewalGold()
+    {
+        /*
+         * 임시로 그냥 초당 1씩 오름..
+         */
     }
 }
