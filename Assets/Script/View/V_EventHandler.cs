@@ -13,9 +13,9 @@ public class V_EventHandler : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
+            print(EventSystem.current.currentSelectedGameObject.name);
             if(EventSystem.current.currentSelectedGameObject != null) {
                 string SelectedButton = EventSystem.current.currentSelectedGameObject.name;
-                print("hi");
                 SceneController.SendMessage("SceneMove", SelectedButton);
             }
         }

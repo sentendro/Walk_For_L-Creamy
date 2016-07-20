@@ -10,10 +10,10 @@ public class C_Refrig : MonoBehaviour {
     public Text Gold;
     public Text Power;
 
-    private int _step;
-    private int _time;
-    private int _power;
-    private int _battery;
+    public int _step;
+    public int _time;
+    public int _power;
+    public int _battery;
     
 
 	// Update is called once per frame
@@ -65,9 +65,9 @@ public class C_Refrig : MonoBehaviour {
          */
 
         //1
-        M_Walker.SendMessage("getStep");
+        M_Walker.SendMessage("getStep",this);
         //2
-        M_Player.SendMessage("CalcPower",this._step);
+        M_Player.SendMessage("CalcPower",this);
         //3
         V_Refrig.SendMessage("showPower",this._power);
         
@@ -82,14 +82,21 @@ public class C_Refrig : MonoBehaviour {
          */
         //1
         if (M_Walker != null)
-            M_Walker.SendMessage("getTime");
+        {
+            M_Walker.SendMessage("getTime",this);
+            print(this._time);
+        }
         else
-            print("hi");
+            print("M_Walker is missing");
         //2
         if (M_Refrigerator != null)
-            M_Refrigerator.SendMessage("CalcBattery", this._time);
+            M_Refrigerator.SendMessage("CalcBattery", this);
         else
+            print("M_Refrigerator is missing");
         //3
-        V_Refrig.SendMessage("showBattery", this._battery);
+        if (V_Refrig != null)
+            V_Refrig.SendMessage("showBattery", this);
+        else
+            print("V_Refrig is missing");
     }
 }

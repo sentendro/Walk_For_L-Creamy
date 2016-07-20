@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 [Serializable]
-public class M_Refrigerator: MonoBehaviour
+public class M_Refrigerator : MonoBehaviour
 {
     int _lastTime;
 
@@ -11,8 +11,7 @@ public class M_Refrigerator: MonoBehaviour
     int _Temparature;
     int _Type;
     int _Level;
-
-    GameObject C_Refrig;
+    
 
     void Start()
     {
@@ -22,13 +21,11 @@ public class M_Refrigerator: MonoBehaviour
         this._Temparature = 0;
         this._Type = 0;
         this._Level = 0;
-
-        this.C_Refrig = GameObject.Find("C_refrig");
     }
-    void CalcBattery(int currentTime)
+    void CalcBattery(C_Refrig script)
     {
-        this._Battery = this._Battery + (currentTime - this._lastTime);
-        C_Refrig.SendMessage("setBattery", this._Battery);
+        this._Battery = this._Battery + (script._time - this._lastTime);
+        script._battery = this._Battery;
     }
     void CalcTemparature()
     {

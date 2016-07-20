@@ -235,6 +235,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 123351736}
+  - 114: {fileID: 123351737}
   m_Layer: 0
   m_Name: V_Refrig
   m_TagString: Untagged
@@ -255,6 +256,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &123351737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 123351735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b00f49f84be9e4e9c7d461d817c237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &215285754
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +826,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gold: {fileID: 895471572}
   Power: {fileID: 1277238899}
+  _step: 0
+  _time: 0
+  _power: 0
+  _battery: 0
 --- !u!4 &1204824058
 Transform:
   m_ObjectHideFlags: 0

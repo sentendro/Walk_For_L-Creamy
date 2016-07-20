@@ -13,23 +13,19 @@ public class M_Walker : MonoBehaviour
     {
         this._step = 0;
         this._time = 0;
-        C_Refrig = GameObject.Find("C_Refrig");
     }
 
     void Update()
     {
         this._time += Time.deltaTime;
-        print((int)this._time);
     }
-    void getStep()
+    void getStep(C_Refrig script)
     {
-        if(C_Refrig != null)
-            C_Refrig.SendMessage("setStep", this._step);
+        script._step = this._step;
     }
 
-    void getTime()
+    void getTime(C_Refrig script)
     {
-        if (C_Refrig != null)
-            C_Refrig.SendMessage("setTime", this._step);
+        script._time = (int) this._time;
     }
 }

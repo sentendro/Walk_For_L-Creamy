@@ -8,8 +8,8 @@ public class V_Refrig : MonoBehaviour {
     {
         //Power를 변경시킨다.
     }
-    void showBattery(int givenBattery)
+    void showBattery(C_Refrig script)
     {
-
+        print("showBattery");
     }
 }
