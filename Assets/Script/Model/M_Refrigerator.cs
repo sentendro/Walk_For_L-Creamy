@@ -2,7 +2,6 @@
 using System.Collections;
 using System;
 
-[Serializable]
 public class M_Refrigerator : MonoBehaviour
 {
     int _lastTime;
@@ -28,7 +27,6 @@ public class M_Refrigerator : MonoBehaviour
     }
     void CalcBattery(C_Refrig script)
     {
-        print(script._time);
         this._Battery = this._Battery + (script._time - this._lastTime);
         script._battery = this._Battery;
         setLastTime(script._time);

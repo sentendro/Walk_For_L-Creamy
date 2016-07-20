@@ -2,7 +2,6 @@
 using System.Collections;
 using System;
 
-[Serializable]
 public class M_Walker : MonoBehaviour
 {
     private float _step;
