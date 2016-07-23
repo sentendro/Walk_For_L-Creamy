@@ -33,26 +33,14 @@ public class C_Refrig : MonoBehaviour {
         
         renewalPower();
         renewalBattery();
-
-        
     }
 
-    void setStep(int givenStep)
-    {
-        this._step = givenStep;
-    }
-    void setPower(int givenPower)
-    {
-
-    }
-    void setTime(int givenTime)
-    {
-        this._time = givenTime;
-    }
-    void setBattery(int givenBattery)
-    {
-        this._battery = givenBattery;
-    }
+    #region setter
+    void setStep(int givenStep)         { this._step = givenStep; }
+    void setPower(int givenPower)       { this._power = givenPower; }
+    void setTime(int givenTime)         { this._time = givenTime;}
+    void setBattery(int givenBattery)   { this._battery = givenBattery; }
+    #endregion
 
     void renewalPower()
     {
