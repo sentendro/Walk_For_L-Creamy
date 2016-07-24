@@ -4,9 +4,10 @@ using System.Collections;
 public class C_Serializer : MonoBehaviour {
     private readonly string PLAYERKEY = "PLAYERINFO_SAVE_KEY";
     private readonly string SETTINGKEY = "SETTINGINFO_SAVE_KEY";
+    private readonly string WALKERKEY = "WALKERINFO_SAVE_KEY";
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
 	
 	// Update is called once per frame
@@ -22,5 +23,25 @@ public class C_Serializer : MonoBehaviour {
     {
         string SettingData = SaveLoad.ObjectToString(setting);
         PlayerPrefs.SetString(SETTINGKEY, SettingData);
+    }
+    public void SaveWalker(M_Walker walker)
+    {
+        string WalkerData = SaveLoad.ObjectToString(walker);
+        PlayerPrefs.SetString(WALKERKEY, WalkerData);
+    }
+    public M_Player LoadPlayer()
+    {
+        string LoadData = PlayerPrefs.GetString(PLAYERKEY, string.Empty);
+        return SaveLoad.Deserialize<M_Player>(LoadData);
+    }
+    public M_Setting LoadSetting()
+    {
+        string LoadData = PlayerPrefs.GetString(SETTINGKEY, string.Empty);
+        return SaveLoad.Deserialize<M_Setting>(LoadData);
+    }
+    public M_Walker LoadWalker()
+    {
+        string LoadData = PlayerPrefs.GetString(WALKERKEY, string.Empty);
+        return SaveLoad.Deserialize<M_Walker>(LoadData);
     }
 }

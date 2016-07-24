@@ -538,7 +538,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 811613901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3fff4200f2c4e4687d00d7ae0c9bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 784a72570a9f87e4593602fe5d60e1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &998321320
@@ -1024,7 +1024,7 @@ GameObject:
   - 114: {fileID: 1813712165}
   m_Layer: 0
   m_Name: M_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
