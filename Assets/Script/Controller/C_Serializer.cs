@@ -1,41 +1,26 @@
-﻿using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using System;
+﻿using UnityEngine;
+using System.Collections;
 
-public class C_Serializer{
-
-    #region serialize
-    public static string ObjectToString(Object obj)
+public class C_Serializer : MonoBehaviour {
+    private readonly string PLAYERKEY = "PLAYERINFO_SAVE_KEY";
+    private readonly string SETTINGKEY = "SETTINGINFO_SAVE_KEY";
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+    public void SavePlayer(M_Player player)
     {
-        using (var memoryStream = new MemoryStream())
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(memoryStream, obj);
-            memoryStream.Flush();
-            memoryStream.Position = 0;
-
-            return Convert.ToBase64String(memoryStream.ToArray());
-        }
+        string PlayerData = SaveLoad.ObjectToString(player);
+        PlayerPrefs.SetString(PLAYERKEY, PlayerData);
     }
-    #endregion
-
-    #region Deserialize
-    public static T Deserialize<T>(string xmlText)
+    public void SaveSetting(M_Setting setting)
     {
-        if (xmlText != null && xmlText != String.Empty)
-        {
-            byte[] b = Convert.FromBase64String(xmlText);
-            using (var stream = new MemoryStream(b))
-            {
-                var formatter = new BinaryFormatter();
-                stream.Seek(0, SeekOrigin.Begin);
-                return (T)formatter.Deserialize(stream);
-            }
-        }
-        else
-        {
-            return default(T);
-        }
+        string SettingData = SaveLoad.ObjectToString(setting);
+        PlayerPrefs.SetString(SETTINGKEY, SettingData);
     }
-    #endregion
 }
