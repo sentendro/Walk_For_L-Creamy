@@ -23,9 +23,6 @@ public class V_EventHandler : MonoBehaviour {
             }
 
         }
-    }
-    public void Swipe()
-    {
         if (Input.touches.Length > 0)
         {
             Touch t = Input.GetTouch(0);
@@ -55,34 +52,32 @@ public class V_EventHandler : MonoBehaviour {
                     Debug.Log("right swipe");
                 }
             }
+        }
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.GetMouseButtonDown(0))
+                firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+                currentSwipe.Normalize();
+                if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
                 {
-                    firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                    Debug.Log("up swipe");
                 }
-                if (Input.GetMouseButtonUp(0))
+                if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
                 {
-                    secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                    currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-                    currentSwipe.Normalize();
-                    if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-        {
-                        Debug.Log("up swipe");
-                    }
-                    if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-        {
-                        Debug.Log("down swipe");
-                    }
-                    if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-        {
-                        Debug.Log("left swipe");
-                    }
-                    if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-        {
-                        Debug.Log("right swipe");
-                    }
+                    Debug.Log("down swipe");
+                }
+                if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+                {
+                    Debug.Log("left swipe");
+                }
+                if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+                {
+                    Debug.Log("right swipe");
                 }
             }
-        }
     }
 }
