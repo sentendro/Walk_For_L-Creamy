@@ -26,9 +26,7 @@ public class C_SceneController : MonoBehaviour {
             case "Shop":
                 SceneManager.LoadScene("02_Shop");
                 break;
-            case "Setting":
-                SceneManager.LoadScene("02_Setting");
-                break;
+            
             #endregion
 
             #region MyPage
@@ -43,11 +41,7 @@ public class C_SceneController : MonoBehaviour {
                 break;
             #endregion
 
-            #region Setting
-            case "Setting_Back":
-                SceneManager.LoadScene("01_Refrig");
-                break;
-            #endregion
+            
             //default
             default:
                 print("");
