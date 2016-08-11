@@ -24,7 +24,7 @@ public class M_Walker : MonoBehaviour
 
     void Update()
     {
-        
+        stepDetector();
         deltaTime += Time.deltaTime;
         this._time = (int)deltaTime;
         this._step += (Time.deltaTime)*4;

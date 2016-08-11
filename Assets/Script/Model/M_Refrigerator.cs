@@ -15,8 +15,7 @@ public class M_Refrigerator : MonoBehaviour
     void Start()
     {
         this._lastTime = 0;
-
-        this._Battery = 0;
+        this._Battery = 100;
         this._Temparature = 0;
         this._Type = 0;
         this._Level = 0;
@@ -27,7 +26,7 @@ public class M_Refrigerator : MonoBehaviour
     }
     void CalcBattery(C_Refrig script)
     {
-        this._Battery = this._Battery + (script._time - this._lastTime);
+        this._Battery = this._Battery - (script._time - this._lastTime);
         script._battery = this._Battery;
         setLastTime(script._time);
     }
