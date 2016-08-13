@@ -69,9 +69,9 @@ public class M_LCreamy : MonoBehaviour {
     private void Grow()
     {
         this._time += Time.deltaTime;
-        if (this._time > 5)
+        if (this._time > 2 && this._time<5)
             this.L = Level.level1;
-        else if (this._time > 10)
+        else if (this._time > 5)
             this.L = Level.level2;
     }
 }
