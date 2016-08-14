@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class V_EventHandler : MonoBehaviour {
-    private GameObject SceneController;
+    GameObject SceneController;
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
@@ -13,45 +13,55 @@ public class V_EventHandler : MonoBehaviour {
     }
     void Update()
     {
+        Click();
+        Slide();
+    }
+    private void Click()
+    {
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.currentSelectedGameObject != null) {
+            if (EventSystem.current.currentSelectedGameObject != null)
+            {
                 GameObject Selected = EventSystem.current.currentSelectedGameObject;
-                
+
                 if (Selected.tag == "Button")
                 {
                     SceneController.SendMessage("SceneMove", Selected.name);
-                }else if(Selected.tag == "PopUp")
+                }
+                else if (Selected.tag == "PopUp")
                 {
                     GameObject View;
-                    switch(Selected.name)
+                    switch (Selected.name)
                     {
+                        #region Refrigerator
                         case "Setting":
                         case "exitSetting":
-                            View = GameObject.Find("V_Refrig");
-                            if (Selected.name == "Setting")
-                                View.SendMessage("turnOnPop", Selected.name);
-                            else if (Selected.name == "exitSetting")
-                            {
-                                View.SendMessage("turnOffPop", Selected.name);
-                            }
-                            break;
                         case "Inventory":
                         case "exitInventory":
+                        case "LCreamyInfo":
+                        case "exitLCreamyInfo":
+                        case "BatteryInfo":
+                        case "exitBatteryInfo":
                             View = GameObject.Find("V_Refrig");
-                            if (Selected.name == "Inventory")
-                                View.SendMessage("turnOnPop", Selected.name);
-                            else if(Selected.name == "exitInventory")
-                            {
-                                View.SendMessage("turnOffPop", Selected.name);
-                            }
+                            View.SendMessage("SelectedName", Selected.name);
                             break;
+                            #endregion
                     }
+                }
+                else if (Selected.tag == "Item")
+                {
+                    GameObject View = GameObject.Find("V_Shop");
+                    View.SendMessage("SelectedName", Selected.name);
+
                 }
 
             }
 
         }
+    }
+
+    private void Slide()
+    {
         if (Input.touches.Length > 0)
         {
             Touch t = Input.GetTouch(0);
@@ -82,31 +92,33 @@ public class V_EventHandler : MonoBehaviour {
                 }
             }
         }
-            if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
+        {
+            firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+            currentSwipe.Normalize();
+            if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
             {
-                firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                Debug.Log("up swipe");
             }
-            if (Input.GetMouseButtonUp(0))
+            if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
             {
-                secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-                currentSwipe.Normalize();
-                if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                {
-                    Debug.Log("up swipe");
-                }
-                if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                {
-                    Debug.Log("down swipe");
-                }
-                if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                {
-                    Debug.Log("left swipe");
-                }
-                if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                {
-                    Debug.Log("right swipe");
-                }
+                Debug.Log("down swipe");
             }
+            if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+            {
+                Debug.Log("left swipe");
+            }
+            if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+            {
+                Debug.Log("right swipe");
+            }
+        }
     }
+
+    
 }

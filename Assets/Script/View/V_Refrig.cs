@@ -12,7 +12,26 @@ public class V_Refrig : MonoBehaviour {
 
     void Awake()
     {
-        SpecialPanel = GameObject.Find("POPUP");
+        SpecialPanel = GameObject.Find("POPUP_SCREEN");
+    }
+
+    void SelectedName(string givenName)
+    {
+        switch(givenName)
+        {
+            case "Setting":
+            case "Inventory":
+            case "LCreamyInfo":
+            case "BatteryInfo":
+                turnOnPop(givenName);
+                break;
+            case "exitSetting":
+            case "exitInventory":
+            case "exitLCreamyInfo":
+            case "exitBatteryInfo":
+                turnOffPop(givenName);
+                break;
+        }
     }
     public void turnOnPop(string givenName)
     {
@@ -24,6 +43,14 @@ public class V_Refrig : MonoBehaviour {
                 break;
             case "Inventory":
                 SpecialPanel.transform.GetChild(2).gameObject.SetActive(true);
+                turnOnBackGround();
+                break;
+            case "LCreamyInfo":
+                SpecialPanel.transform.GetChild(3).gameObject.SetActive(true);
+                turnOnBackGround();
+                break;
+            case "BatteryInfo":
+                SpecialPanel.transform.GetChild(4).gameObject.SetActive(true);
                 turnOnBackGround();
                 break;
         }
@@ -44,6 +71,14 @@ public class V_Refrig : MonoBehaviour {
                 break;
             case "exitInventory":
                 SpecialPanel.transform.GetChild(2).gameObject.SetActive(false);
+                turnOffBackGround();
+                break;
+            case "exitLCreamyInfo":
+                SpecialPanel.transform.GetChild(3).gameObject.SetActive(false);
+                turnOffBackGround();
+                break;
+            case "exitBatteryInfo":
+                SpecialPanel.transform.GetChild(4).gameObject.SetActive(false);
                 turnOffBackGround();
                 break;
 
