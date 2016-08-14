@@ -26,6 +26,7 @@ public class M_Item : MonoBehaviour {
 
     void useItem()
     {
+        Debug.Log("hi");
         this._count--;
         Count.text = this._count.ToString();
     }

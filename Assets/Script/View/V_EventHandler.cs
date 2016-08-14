@@ -29,7 +29,7 @@ public class V_EventHandler : MonoBehaviour {
                 }
                 else if (SelectedObject.scene.name == "01_Refrig")
                 {
-                    GameObject View = GameObject.Find("V_Refrig"); ;
+                    GameObject View = GameObject.Find("V_Refrig");
                     View.SendMessage("SelectedObject", SelectedObject);
                 }
                 else if (SelectedObject.scene.name == "02_Shop")

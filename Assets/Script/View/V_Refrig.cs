@@ -25,7 +25,17 @@ public class V_Refrig : MonoBehaviour {
         {
             turnOffPop(givenObject.name);
         }
+        else if(givenObject.tag == "Item")
+        {
+            useItem(givenObject);
+        }
     }
+
+    private void useItem(GameObject givenObject)
+    {
+        givenObject.SendMessage("useItem");
+    }
+
     public void turnOnPop(string givenName)
     {
         switch(givenName)
