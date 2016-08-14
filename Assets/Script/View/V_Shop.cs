@@ -5,7 +5,7 @@ using System;
 public class V_Shop : MonoBehaviour {
 
     private GameObject SpecialPanel;
-    private GameObject SelectedItem;
+    
     void Awake()
     {
         SpecialPanel = GameObject.Find("POPUP_SCREEN");
@@ -39,7 +39,7 @@ public class V_Shop : MonoBehaviour {
 
     private void ItemUse(GameObject givenObject)
     {
-        throw new NotImplementedException();
+        givenObject.SendMessage("use", 0);
     }
 
     private void turnOffPop(string givenName)

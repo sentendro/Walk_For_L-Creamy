@@ -521,7 +521,6 @@ GameObject:
   - 222: {fileID: 500460644}
   - 114: {fileID: 500460643}
   - 114: {fileID: 500460642}
-  - 114: {fileID: 500460645}
   m_Layer: 5
   m_Name: Setting
   m_TagString: PopUp
@@ -622,17 +621,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 500460640}
---- !u!114 &500460645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 500460640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a9e39aa9e3b1e4ebd3404074263222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &594780608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1103,7 @@ GameObject:
   - 114: {fileID: 1125464420}
   m_Layer: 5
   m_Name: exitSetting
-  m_TagString: exit
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1554,7 +1542,7 @@ GameObject:
   - 114: {fileID: 1479976306}
   m_Layer: 5
   m_Name: exitLCreamyInfo
-  m_TagString: exit
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2223,7 +2211,7 @@ GameObject:
   - 114: {fileID: 1717247913}
   m_Layer: 5
   m_Name: exitBatteryInfo
-  m_TagString: exit
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2556,7 +2544,7 @@ GameObject:
   - 114: {fileID: 1772377181}
   m_Layer: 5
   m_Name: exitInventory
-  m_TagString: exit
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
