@@ -16,8 +16,39 @@ public class V_EventHandler : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.currentSelectedGameObject != null) {
-                string SelectedButton = EventSystem.current.currentSelectedGameObject.name;
-                SceneController.SendMessage("SceneMove", SelectedButton);
+                GameObject Selected = EventSystem.current.currentSelectedGameObject;
+                
+                if (Selected.tag == "Button")
+                {
+                    SceneController.SendMessage("SceneMove", Selected.name);
+                }else if(Selected.tag == "PopUp")
+                {
+                    GameObject View;
+                    switch(Selected.name)
+                    {
+                        case "Setting":
+                        case "exitSetting":
+                            View = GameObject.Find("V_Refrig");
+                            if (Selected.name == "Setting")
+                                View.SendMessage("turnOnPop", Selected.name);
+                            else if (Selected.name == "exitSetting")
+                            {
+                                View.SendMessage("turnOffPop", Selected.name);
+                            }
+                            break;
+                        case "Inventory":
+                        case "exitInventory":
+                            View = GameObject.Find("V_Refrig");
+                            if (Selected.name == "Inventory")
+                                View.SendMessage("turnOnPop", Selected.name);
+                            else if(Selected.name == "exitInventory")
+                            {
+                                View.SendMessage("turnOffPop", Selected.name);
+                            }
+                            break;
+                    }
+                }
+
             }
 
         }
