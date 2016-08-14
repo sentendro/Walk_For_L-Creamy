@@ -22,37 +22,20 @@ public class V_EventHandler : MonoBehaviour {
         {
             if (EventSystem.current.currentSelectedGameObject != null)
             {
-                GameObject Selected = EventSystem.current.currentSelectedGameObject;
-
-                if (Selected.tag == "Button")
+                GameObject SelectedObject = EventSystem.current.currentSelectedGameObject;
+                if (SelectedObject.tag == "Button")
                 {
-                    SceneController.SendMessage("SceneMove", Selected.name);
+                    SceneController.SendMessage("SceneMove", SelectedObject.name);
                 }
-                else if (Selected.tag == "PopUp")
+                else if (SelectedObject.scene.name == "01_Refrig")
                 {
-                    GameObject View;
-                    switch (Selected.name)
-                    {
-                        #region Refrigerator
-                        case "Setting":
-                        case "exitSetting":
-                        case "Inventory":
-                        case "exitInventory":
-                        case "LCreamyInfo":
-                        case "exitLCreamyInfo":
-                        case "BatteryInfo":
-                        case "exitBatteryInfo":
-                            View = GameObject.Find("V_Refrig");
-                            View.SendMessage("SelectedName", Selected.name);
-                            break;
-                            #endregion
-                    }
+                    GameObject View = GameObject.Find("V_Refrig"); ;
+                    View.SendMessage("SelectedObject", SelectedObject);
                 }
-                else if (Selected.tag == "Item")
+                else if (SelectedObject.scene.name == "02_Shop")
                 {
                     GameObject View = GameObject.Find("V_Shop");
-                    View.SendMessage("SelectedName", Selected.name);
-
+                    View.SendMessage("SelectedObject", SelectedObject);
                 }
 
             }

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Button
   - PopUp
+  - Item
+  - Exit
+  - Use
   layers:
   - Default
   - TransparentFX
