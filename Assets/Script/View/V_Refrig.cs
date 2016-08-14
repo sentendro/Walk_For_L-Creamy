@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class V_Refrig : MonoBehaviour {
     public Text Gold;
@@ -18,25 +19,40 @@ public class V_Refrig : MonoBehaviour {
         switch(givenName)
         {
             case "Setting":
-                SpecialPanel.transform.GetChild(0).gameObject.SetActive(true);
+                SpecialPanel.transform.GetChild(1).gameObject.SetActive(true);
+                turnOnBackGround();
                 break;
             case "Inventory":
-                SpecialPanel.transform.GetChild(1).gameObject.SetActive(true);
+                SpecialPanel.transform.GetChild(2).gameObject.SetActive(true);
+                turnOnBackGround();
                 break;
         }
     }
+
+    private void turnOnBackGround()
+    {
+        SpecialPanel.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
     public void turnOffPop(string givenName)
     {
         switch (givenName)
         {
             case "exitSetting":
-                SpecialPanel.transform.GetChild(0).gameObject.SetActive(false);
+                SpecialPanel.transform.GetChild(1).gameObject.SetActive(false);
+                turnOffBackGround();
                 break;
             case "exitInventory":
-                SpecialPanel.transform.GetChild(1).gameObject.SetActive(false);
+                SpecialPanel.transform.GetChild(2).gameObject.SetActive(false);
+                turnOffBackGround();
                 break;
 
         }
+    }
+
+    private void turnOffBackGround()
+    {
+        SpecialPanel.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     void showPower(int givenPower)
