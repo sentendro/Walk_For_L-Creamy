@@ -3,13 +3,13 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class V_EventHandler : MonoBehaviour {
-    GameObject SceneController;
+    GameObject C_SceneController;
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
     void Awake()
     {
-        SceneController = GameObject.Find("C_SceneController");
+        C_SceneController = GameObject.Find("C_SceneController");
     }
     void Update()
     {
@@ -25,7 +25,7 @@ public class V_EventHandler : MonoBehaviour {
                 GameObject SelectedObject = EventSystem.current.currentSelectedGameObject;
                 if (SelectedObject.tag == "Button")
                 {
-                    SceneController.SendMessage("SceneMove", SelectedObject.name);
+                    C_SceneController.SendMessage("SceneMove", SelectedObject.name);
                 }
                 else if (SelectedObject.scene.name == "01_Refrig")
                 {

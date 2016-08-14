@@ -5,10 +5,12 @@ using System;
 public class V_Shop : MonoBehaviour {
 
     private GameObject SpecialPanel;
+    GameObject C_Shop;
     
     void Awake()
     {
         SpecialPanel = GameObject.Find("POPUP_SCREEN");
+        C_Shop = GameObject.Find("C_Shop");
     }
 
     // Use this for initialization
@@ -33,7 +35,7 @@ public class V_Shop : MonoBehaviour {
         }
         else if (givenObject.tag == "Use")      //Text 오브젝트
         {
-            ItemUse(givenObject);
+            BuyItem(givenObject);
         }
     }
 
@@ -66,11 +68,12 @@ public class V_Shop : MonoBehaviour {
         }
     }
 
-    void ItemUse(GameObject givenObject)
+    void BuyItem(GameObject givenObject)
     {
+        
         //Text 오브젝트 이니까 부모의 이름을 얻어내서 실제 Item GameObject를 Find로 찾아낸다.
         GameObject Item = GameObject.Find(givenObject.transform.parent.name);
-        Debug.Log(Item.name);
+        C_Shop.SendMessage("Buy", Item);
         Item.SendMessage("useItem");
     }
 
