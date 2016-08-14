@@ -23,36 +23,56 @@ public class V_Shop : MonoBehaviour {
 
     void SelectedObject(GameObject givenObject)
     {
-        if (givenObject.tag == "Item")
+        if (givenObject.tag == "Item")          //Item 오브젝트
         {
-            turnOnPop(givenObject.name);
+            turnOnPop(givenObject);
         }
-        else if (givenObject.tag == "Exit")
+        else if (givenObject.tag == "Exit")     //Text 오브젝트
         {
-            turnOffPop(givenObject.name);
+            turnOffPop(givenObject);
         }
-        else if (givenObject.tag == "Use")
+        else if (givenObject.tag == "Use")      //Text 오브젝트
         {
             ItemUse(givenObject);
         }
     }
 
-    private void ItemUse(GameObject givenObject)
-    {
-        givenObject.SendMessage("use", 0);
-    }
-
-    private void turnOffPop(string givenName)
-    {
-        SpecialPanel.transform.GetChild(0).gameObject.SetActive(false);
-        SpecialPanel.transform.GetChild(1).gameObject.SetActive(false);
-    }
-
-    private void turnOnPop(string givenName)
+    private void turnOnPop(GameObject givenObject)
     {
         SpecialPanel.transform.GetChild(0).gameObject.SetActive(true);
-        SpecialPanel.transform.GetChild(1).gameObject.SetActive(true);
+        switch (givenObject.name)
+        {
+            case "item1":
+                SpecialPanel.transform.GetChild(1).gameObject.SetActive(true);
+                break;
+            case "item2":
+                SpecialPanel.transform.GetChild(2).gameObject.SetActive(true);
+                break;
+        }
     }
-    
+    private void turnOffPop(GameObject givenObject)
+    {
+        //Text 오브젝트 이니까 부모에 접근해서 팝업창 GameObject에 접근
+        GameObject PopUp = givenObject.transform.parent.gameObject;
+        SpecialPanel.transform.GetChild(0).gameObject.SetActive(false);
+        switch (PopUp.name)
+        {
+            case "item1":
+                SpecialPanel.transform.GetChild(1).gameObject.SetActive(false);
+                break;
+            case "item2":
+                SpecialPanel.transform.GetChild(2).gameObject.SetActive(false);
+                break;
+        }
+    }
+
+    void ItemUse(GameObject givenObject)
+    {
+        //Text 오브젝트 이니까 부모의 이름을 얻어내서 실제 Item GameObject를 Find로 찾아낸다.
+        GameObject Item = GameObject.Find(givenObject.transform.parent.name);
+        Debug.Log(Item.name);
+        Item.SendMessage("useItem");
+    }
+
 
 }

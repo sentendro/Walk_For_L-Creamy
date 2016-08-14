@@ -16,8 +16,9 @@ public class M_Item : MonoBehaviour {
 	
 	}
 
-    void use(int givenNum)
+    void useItem()
     {
+        this._count--;
         Count.text = this._count.ToString();
     }
 }
