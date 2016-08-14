@@ -58,7 +58,6 @@ public class M_LCreamy : MonoBehaviour {
 
     private void Ani_level0()
     {
-        Debug.Log("LC  ");
         GetComponent<Renderer>().material.mainTexture = this._level0[this._aniCount];
         this._aniCount++;
         if (this._aniCount >= this._level0.Length)

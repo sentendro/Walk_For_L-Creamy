@@ -24,10 +24,8 @@ public class V_Pop : MonoBehaviour {
         {
             if (EventSystem.current.currentSelectedGameObject != null)
             {
-                Debug.Log("S3");
                 if (EventSystem.current.currentSelectedGameObject.name.Equals("Setting"))
                 {
-                    Debug.Log("S5");
                     SpecialPanel.SetActive(true);
                 }
                 if (EventSystem.current.currentSelectedGameObject.name.Equals("exit"))
