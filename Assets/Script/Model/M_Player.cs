@@ -33,8 +33,8 @@ public class M_Player : MonoBehaviour {
     //전력 계산방법 : 현재 전력 + (현재 걸음 수 - 마지막 걸음 수)
     void CalcPower(C_Refrig script)
     {
-        this._Power = this._Power + (script._step - _lastStep);
-        script._power = this._Power;
-        setLastStep(script._step);
+        this._Power = this._Power + (script.getStep() - _lastStep);
+        script.setPower(this._Power);
+        setLastStep(script.getStep());
     }
 }

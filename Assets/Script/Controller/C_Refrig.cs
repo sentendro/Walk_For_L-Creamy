@@ -8,10 +8,10 @@ public class C_Refrig : MonoBehaviour {
     private GameObject M_Refrigerator;
     private GameObject V_Refrig;
 
-    public int _step;
-    public int _time;
-    public int _power;
-    public int _battery;
+    int _step;
+    int _time;
+    int _power;
+    int _battery;
     
 
 	// Update is called once per frame
@@ -36,12 +36,18 @@ public class C_Refrig : MonoBehaviour {
     }
 
     #region setter
-    void setStep(int givenStep)         { this._step = givenStep; }
-    void setPower(int givenPower)       { this._power = givenPower; }
-    void setTime(int givenTime)         { this._time = givenTime;}
-    void setBattery(int givenBattery)   { this._battery = givenBattery; }
+    public void setStep(int givenStep)         { this._step = givenStep; }
+    public void setPower(int givenPower)       { this._power = givenPower; }
+    public void setTime(int givenTime)         { this._time = givenTime;}
+    public void setBattery(int givenBattery)   { this._battery = givenBattery; }
     #endregion
 
+    #region getter
+    public int getStep() { return this._step; }
+    public int getPower() { return this._power; }
+    public int getTime() { return this._time; }
+    public int getBattery() { return this._battery; }
+    #endregion
     void renewalPower()
     {
         /*

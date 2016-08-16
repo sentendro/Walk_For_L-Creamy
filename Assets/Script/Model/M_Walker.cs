@@ -31,12 +31,12 @@ public class M_Walker : MonoBehaviour
     }
     void getStep(C_Refrig script)
     {
-        script._step = (int) this._step;
+        script.setStep((int) this._step);
     }
 
     void getTime(C_Refrig script)
     {
-        script._time = (int) this._time;
+        script.setTime((int) this._time);
     }
 
     public void stepDetector()

@@ -5,14 +5,21 @@ public class C_Serializer : MonoBehaviour {
     private readonly string PLAYERKEY = "PLAYERINFO_SAVE_KEY";
     private readonly string SETTINGKEY = "SETTINGINFO_SAVE_KEY";
     private readonly string WALKERKEY = "WALKERINFO_SAVE_KEY";
-	// Use this for initialization
-	void Start () {
-	    
-	}
+    private GameObject M_Walker;
+    private GameObject M_Player;
+    private GameObject M_Refrigerator;
+    private GameObject M_Setting;
+    // Use this for initialization
+    void Start () {
+        M_Walker = GameObject.Find("M_Walker");
+        M_Player = GameObject.Find("M_Player");
+        M_Refrigerator = GameObject.Find("M_Refrigerator");
+        M_Setting = GameObject.Find("M_Setting");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        SavePlayer(M_Player.GetComponent<M_Player>());
 	}
     public void SavePlayer(M_Player player)
     {
