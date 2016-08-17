@@ -5,10 +5,15 @@ public class C_Serializer : MonoBehaviour {
     private readonly string PLAYERKEY = "PLAYERINFO_SAVE_KEY";
     private readonly string SETTINGKEY = "SETTINGINFO_SAVE_KEY";
     private readonly string WALKERKEY = "WALKERINFO_SAVE_KEY";
+    private readonly string REFRIGKEY = "REFRIGINFO_SAVE_KEY";
+
     private GameObject M_Walker;
     private GameObject M_Player;
     private GameObject M_Refrigerator;
     private GameObject M_Setting;
+
+    private int _SaveTime = 10;
+
     // Use this for initialization
     void Start () {
         M_Walker = GameObject.Find("M_Walker");
@@ -16,19 +21,26 @@ public class C_Serializer : MonoBehaviour {
         M_Refrigerator = GameObject.Find("M_Refrigerator");
         M_Setting = GameObject.Find("M_Setting");
     }
-	
-	// Update is called once per frame
-	void Update () {
-        SavePlayer(M_Player.GetComponent<M_Player>());
+
+    // Update is called once per frame
+    void Update() {
+        if (_SaveTime == 0) {
+            SavePlayer(M_Player.GetComponent<M_Player>());
+            SaveWalker(M_Walker.GetComponent<M_Walker>());
+            SaveRefrig(M_Refrigerator.GetComponent<M_Refrigerator>());
+            _SaveTime = 3;
+        }
+        else
+            _SaveTime = _SaveTime-1;
 	}
     public void SavePlayer(M_Player player)
     {
         string PlayerData = SaveLoad.ObjectToString(player);
         PlayerPrefs.SetString(PLAYERKEY, PlayerData);
     }
-    public void SaveSetting(M_Setting setting)
+    public void SaveSetting()
     {
-        string SettingData = SaveLoad.ObjectToString(setting);
+        string SettingData = SaveLoad.ObjectToString(M_Setting.GetComponent<M_Setting>());
         PlayerPrefs.SetString(SETTINGKEY, SettingData);
     }
     public void SaveWalker(M_Walker walker)
@@ -36,19 +48,29 @@ public class C_Serializer : MonoBehaviour {
         string WalkerData = SaveLoad.ObjectToString(walker);
         PlayerPrefs.SetString(WALKERKEY, WalkerData);
     }
-    public M_Player LoadPlayer()
+    public void SaveRefrig(M_Refrigerator refrig)
+    {
+        string RefrigData = SaveLoad.ObjectToString(refrig);
+        PlayerPrefs.SetString(REFRIGKEY, RefrigData);
+    }
+    public void LoadPlayer()
     {
         string LoadData = PlayerPrefs.GetString(PLAYERKEY, string.Empty);
-        return SaveLoad.Deserialize<M_Player>(LoadData);
+        M_Player.GetComponent<M_Player>().setUp(SaveLoad.Deserialize<M_Player>(LoadData));
     }
-    public M_Setting LoadSetting()
+    public void LoadSetting()
     {
         string LoadData = PlayerPrefs.GetString(SETTINGKEY, string.Empty);
-        return SaveLoad.Deserialize<M_Setting>(LoadData);
+        M_Setting.GetComponent<M_Setting>().setUp(SaveLoad.Deserialize<M_Setting>(LoadData));
     }
-    public M_Walker LoadWalker()
+    public void LoadWalker()
     {
         string LoadData = PlayerPrefs.GetString(WALKERKEY, string.Empty);
-        return SaveLoad.Deserialize<M_Walker>(LoadData);
+        M_Walker.GetComponent<M_Walker>().setUp(SaveLoad.Deserialize<M_Walker>(LoadData));
+    }
+    public void LoadRefrig()
+    {
+        string LoadData = PlayerPrefs.GetString(REFRIGKEY, string.Empty);
+        M_Refrigerator.GetComponent<M_Refrigerator>().setUp(SaveLoad.Deserialize<M_Refrigerator>(LoadData));
     }
 }

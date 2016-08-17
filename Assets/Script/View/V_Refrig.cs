@@ -9,10 +9,12 @@ public class V_Refrig : MonoBehaviour {
     public Text Battery;
 
     private GameObject SpecialPanel;
+    private GameObject C_Serializer;
 
     void Awake()
     {
         SpecialPanel = GameObject.Find("POPUP_SCREEN");
+        C_Serializer = GameObject.Find("C_Serializer");
     }
 
     void SelectedObject(GameObject givenObject)
@@ -23,6 +25,10 @@ public class V_Refrig : MonoBehaviour {
         }
         else if(givenObject.tag == "Exit")
         {
+            if (givenObject.name == "Setting")
+            {
+                C_Serializer.SendMessage("SaveSetting");
+            }
             turnOffPop(givenObject.name);
         }
         else if(givenObject.tag == "Item")
@@ -90,11 +96,10 @@ public class V_Refrig : MonoBehaviour {
     }
     void showGold(int givenGold)
     {
-
+        Gold.text = givenGold.ToString();
     }
     void showBattery(int givenBattery)
     {
-        Gold.text = givenBattery.ToString();
         Battery.text = givenBattery.ToString();
     }
 }

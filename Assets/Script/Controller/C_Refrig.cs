@@ -12,6 +12,7 @@ public class C_Refrig : MonoBehaviour {
     int _time;
     int _power;
     int _battery;
+    int _touch;
     
 
 	// Update is called once per frame
@@ -36,17 +37,19 @@ public class C_Refrig : MonoBehaviour {
     }
 
     #region setter
-    public void setStep(int givenStep)         { this._step = givenStep; }
-    public void setPower(int givenPower)       { this._power = givenPower; }
-    public void setTime(int givenTime)         { this._time = givenTime;}
-    public void setBattery(int givenBattery)   { this._battery = givenBattery; }
+    public void setStep(int givenStep)          { this._step = givenStep; }
+    public void setPower(int givenPower)        { this._power = givenPower; }
+    public void setTime(int givenTime)          { this._time = givenTime;}
+    public void setBattery(int givenBattery)    { this._battery = givenBattery; }
+    public void setTouch(int givenTouch)        { this._touch = givenTouch; }
     #endregion
 
     #region getter
-    public int getStep() { return this._step; }
-    public int getPower() { return this._power; }
-    public int getTime() { return this._time; }
-    public int getBattery() { return this._battery; }
+    public int getStep()                        { return this._step; }
+    public int getPower()                       { return this._power; }
+    public int getTime()                        { return this._time; }
+    public int getBattery()                     { return this._battery; }
+    public int getTouch()                       { return this._touch; }
     #endregion
     void renewalPower()
     {
@@ -57,9 +60,9 @@ public class C_Refrig : MonoBehaviour {
          */
 
         //1
-        M_Walker.SendMessage("getStep",this);
+        M_Walker.SendMessage("sendStep");
         //2
-        M_Player.SendMessage("CalcPower",this);
+        M_Player.SendMessage("CalcPower",this._step);
         //3
         V_Refrig.SendMessage("showPower",this._power);
         
@@ -93,7 +96,17 @@ public class C_Refrig : MonoBehaviour {
     void renewalGold()
     {
         /*
-         * 임시로 그냥 초당 1씩 오름..
+         * 1. M_Walker로 부터 step을 전달받는다.
+         * 2. M_Player에 step을 주고 Power를 전달받는다.
+         * 3, V_Refrig에 Power를 주고 Power를 갱신시킨다.
          */
+
+        //1
+        M_Walker.SendMessage("getStep", this);
+        //2
+        M_Player.SendMessage("CalcPower", this);
+        //3
+        V_Refrig.SendMessage("showPower", this._power);
+
     }
 }
