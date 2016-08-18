@@ -60,7 +60,7 @@ public class M_Player : MonoBehaviour {
     }
     void CalcPowerwithTouch(int GivenTouch)
     {
-        this.CurrentPlayer.setPower(this.CurrentPlayer.getPower() + (GivenTouch - this.CurrentPlayer.getLastTouch()));
+        this.CurrentPlayer.setPower(this.CurrentPlayer.getPower() + (GivenTouch - this.CurrentPlayer.getLastTouch())*3);
         this.Controller.SendMessage("setPower", CurrentPlayer.getPower());
         this.CurrentPlayer.setLastTouch(GivenTouch);
     }
