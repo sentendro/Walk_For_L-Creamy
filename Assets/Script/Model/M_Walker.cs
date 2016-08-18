@@ -14,11 +14,14 @@ public class M_Walker : MonoBehaviour
 
     private GameObject Controller;
     private GameObject C_Serializer;
+    private GameObject EachController;
+
     public Walker CurrentWalker;
 
     void Awake()
     {
         C_Serializer = GameObject.Find("C_Serializer");
+        Controller = GameObject.Find("C_ResourceController");
         CurrentWalker = new Walker();
     }
     void Start()
@@ -37,10 +40,9 @@ public class M_Walker : MonoBehaviour
 
     void Update()
     {
-        ControllerCheck();
+        EachControllerCheck();
         stepDetector();
         CurrentWalker.setCurrentTime(DateTime.Now);
-        CurrentWalker.sec = CurrentWalker.getCurrentTime().Second;
     }
 
     void Clicker()
@@ -85,12 +87,12 @@ public class M_Walker : MonoBehaviour
         }
         _avgAcc = _curAcc;
     }
-    void ControllerCheck()
+    void EachControllerCheck()
     {
-        if (GameObject.Find("C_Logo") != null) Controller = GameObject.Find("C_Logo");
-        if (GameObject.Find("C_Refrig") != null) Controller = GameObject.Find("C_Refrig");
-        if (GameObject.Find("C_Shop") != null) Controller = GameObject.Find("C_Shop");
-        if (GameObject.Find("C_MyPage") != null) Controller = GameObject.Find("C_MyPage");
+        if (GameObject.Find("C_Logo") != null) EachController = GameObject.Find("C_Logo");
+        if (GameObject.Find("C_Refrig") != null) EachController = GameObject.Find("C_Refrig");
+        if (GameObject.Find("C_Shop") != null) EachController = GameObject.Find("C_Shop");
+        if (GameObject.Find("C_MyPage") != null) EachController = GameObject.Find("C_MyPage");
     }
     public void setUp(Walker prevWalker)
     {
@@ -105,7 +107,6 @@ public class Walker
     private int _step;
     private int _touch;
     public DateTime _CurrentTime;
-    public int sec;
 
     #region setter
     public void setStep(int step)                     { this._step = step; }

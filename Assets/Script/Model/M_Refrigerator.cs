@@ -7,6 +7,8 @@ public class M_Refrigerator : MonoBehaviour
 
     private GameObject Controller;
     private GameObject C_Serializer;
+    private GameObject EachController;
+
     private Refrigerator CurrentRefrig;
 
     #region sender
@@ -23,6 +25,7 @@ public class M_Refrigerator : MonoBehaviour
     void Awake()
     {
         C_Serializer = GameObject.Find("C_Serializer");
+        Controller = GameObject.Find("C_ResourceController");
         CurrentRefrig = new Refrigerator();
     }
     void Start()
@@ -36,14 +39,14 @@ public class M_Refrigerator : MonoBehaviour
             CurrentRefrig.setLastTimeForBattery(DateTime.Now);
             CurrentRefrig.setLastTimeForTemperature(DateTime.Now);
             CurrentRefrig.setBattery(100);
-            CurrentRefrig.setTemperature(0);
+            CurrentRefrig.setTemperature(20);
             CurrentRefrig.setType(0);
             CurrentRefrig.setLevel(0);
         }
     }
     void Update()
     {
-        ControllerCheck();
+        this.EachControllerCheck();
     }
     void CalcBattery(DateTime CurrentTime)
     {
@@ -51,7 +54,6 @@ public class M_Refrigerator : MonoBehaviour
         if (givenTime.Seconds < 1)
             return;
         int remainTime = ((givenTime.Days * 86400) + (givenTime.Hours * 3600) + (givenTime.Seconds));
-        Debug.Log(remainTime.ToString());
         if (CurrentRefrig.getBattery() >= 0)
         {
             if (CurrentRefrig.getBattery() - remainTime > 0)
@@ -74,12 +76,10 @@ public class M_Refrigerator : MonoBehaviour
         if (givenTime.Seconds < 1)
             return;
         int remainTime = ((givenTime.Days * 86400) + (givenTime.Hours * 3600) + (givenTime.Seconds));
-        Debug.Log(remainTime.ToString());
         if (CurrentRefrig.getBattery() > 0)
         {
             if (CurrentRefrig.getTemperature() >= -18)
             {
-                double TemperatureSpan = CurrentRefrig.getTemperature() - (-18);
                 if (CurrentRefrig.getTemperature() - (0.4 * remainTime) < -18)
                 {
                     this.CurrentRefrig.setTemperature(-18);
@@ -93,12 +93,12 @@ public class M_Refrigerator : MonoBehaviour
         }
         CurrentRefrig.setLastTimeForTemperature(CurrentTime);
     }
-    void ControllerCheck()
+    void EachControllerCheck()
     {
-        if (GameObject.Find("C_Logo") != null) Controller = GameObject.Find("C_Logo");
-        if (GameObject.Find("C_Refrig") != null) Controller = GameObject.Find("C_Refrig");
-        if (GameObject.Find("C_Shop") != null) Controller = GameObject.Find("C_Shop");
-        if (GameObject.Find("C_MyPage") != null) Controller = GameObject.Find("C_MyPage");
+        if (GameObject.Find("C_Logo") != null) EachController = GameObject.Find("C_Logo");
+        if (GameObject.Find("C_Refrig") != null) EachController = GameObject.Find("C_Refrig");
+        if (GameObject.Find("C_Shop") != null) EachController = GameObject.Find("C_Shop");
+        if (GameObject.Find("C_MyPage") != null) EachController = GameObject.Find("C_MyPage");
     }
     public void setUp(Refrigerator prevRefrig)
     {

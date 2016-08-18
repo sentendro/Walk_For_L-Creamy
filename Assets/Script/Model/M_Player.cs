@@ -5,12 +5,14 @@ using System;
 public class M_Player : MonoBehaviour {
     private GameObject Controller;
     private GameObject C_Serializer;
+    private GameObject EachController;
     private Player CurrentPlayer;
 
     public Player getCurrentPlayer() { return this.CurrentPlayer; }
     void Awake()
     {
         C_Serializer = GameObject.Find("C_serialzier");
+        Controller = GameObject.Find("C_ResourceController");
         CurrentPlayer = new Player();
     }
 
@@ -52,7 +54,7 @@ public class M_Player : MonoBehaviour {
     //전력 계산방법 : 현재 전력 + (현재 걸음 수 - 마지막 걸음 수)
     void CalcPowerwithStep(int GivenStep)
     {
-        this.CurrentPlayer.setPower(this.CurrentPlayer.getPower() + (GivenStep - this.CurrentPlayer.getLastStep()));
+        this.CurrentPlayer.setPower(this.CurrentPlayer.getPower() + (GivenStep - this.CurrentPlayer.getLastStep())*3);
         this.Controller.SendMessage("setPower", this.CurrentPlayer.getPower());
         this.CurrentPlayer.setLastStep(GivenStep);
     }
@@ -64,14 +66,14 @@ public class M_Player : MonoBehaviour {
     }
     void Update()
     {
-        this.ControllerCheck();
+        this.EachControllerCheck();
     }
-    void ControllerCheck()
+    void EachControllerCheck()
     {
-        if (GameObject.Find("C_Logo") != null) Controller = GameObject.Find("C_Logo");
-        if (GameObject.Find("C_Refrig") != null) Controller = GameObject.Find("C_Refrig");
-        if (GameObject.Find("C_Shop") != null) Controller = GameObject.Find("C_Shop");
-        if (GameObject.Find("C_MyPage") != null) Controller = GameObject.Find("C_MyPage");
+        if (GameObject.Find("C_Logo") != null) EachController = GameObject.Find("C_Logo");
+        if (GameObject.Find("C_Refrig") != null) EachController = GameObject.Find("C_Refrig");
+        if (GameObject.Find("C_Shop") != null) EachController = GameObject.Find("C_Shop");
+        if (GameObject.Find("C_MyPage") != null) EachController = GameObject.Find("C_MyPage");
     }
     void setUp(Player prevPlayer)
     {

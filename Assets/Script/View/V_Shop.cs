@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
-public class V_Shop : MonoBehaviour {
+public class V_Shop : MonoBehaviour
+{
+    public Text Gold;
+    public Text Power;
 
     private GameObject SpecialPanel;
     GameObject C_Shop;
@@ -70,12 +74,18 @@ public class V_Shop : MonoBehaviour {
 
     void BuyItem(GameObject givenObject)
     {
-        
+
         //Text 오브젝트 이니까 부모의 이름을 얻어내서 실제 Item GameObject를 Find로 찾아낸다.
         GameObject Item = GameObject.Find(givenObject.transform.parent.name);
         C_Shop.SendMessage("Buy", Item);
         Item.SendMessage("useItem");
     }
-
-
+    void showPower(int givenPower)
+    {
+        Power.text = givenPower.ToString();
+    }
+    void showGold(int givenGold)
+    {
+        Gold.text = givenGold.ToString();
+    }
 }

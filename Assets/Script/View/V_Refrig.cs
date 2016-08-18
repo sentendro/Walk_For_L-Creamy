@@ -11,11 +11,15 @@ public class V_Refrig : MonoBehaviour {
     private GameObject SpecialPanel;
     private GameObject C_Serializer;
     private GameObject C_Refrig;
+    private GameObject battery;
+    private GameObject tempergraphy;
 
     void Awake()
     {
         SpecialPanel = GameObject.Find("POPUP_SCREEN");
         C_Serializer = GameObject.Find("C_Serializer");
+        battery = GameObject.Find("batteryImage");
+        tempergraphy = GameObject.Find("tempergraphyImage");
     }
 
     void SelectedObject(GameObject givenObject)
@@ -101,10 +105,12 @@ public class V_Refrig : MonoBehaviour {
     }
     void showBattery(int givenBattery)
     {
+        battery.transform.GetChild(1).GetComponent<Transform>().localScale = new Vector3(1.0f,givenBattery/100.0f,1.0f);
         Battery.text = givenBattery.ToString() + "%";
     }
     void showTemperature(double givenTemperature)
     {
+        tempergraphy.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(1.0f,((float)givenTemperature + 18)/48.0f,1.0f);
         double TemperatureForShow = System.Math.Round(givenTemperature,2);
         Temparature.text = TemperatureForShow.ToString("N1") +"℃";
     }
