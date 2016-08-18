@@ -11,9 +11,10 @@ public class C_Refrig : MonoBehaviour {
 
     int _step;
     int _power;
-    int _battery;
+    public int _battery;
     int _touch;
     int _gold;
+    double _temperature;
     DateTime _CurrentTime;
 
 
@@ -30,12 +31,14 @@ public class C_Refrig : MonoBehaviour {
         this._power = 0;
         this._CurrentTime = DateTime.Now;
         this._battery = 0;
+        this._temperature = 0;
 	}
     void Update()
     {
         renewalPower();
-        renewalBattery();
         renewalGold();
+        renewalTemperature();
+        renewalBattery();
     }
 
     #region setter
@@ -45,6 +48,7 @@ public class C_Refrig : MonoBehaviour {
     public void setBattery(int givenBattery)                { this._battery = givenBattery; }
     public void setTouch(int givenTouch)                    { this._touch = givenTouch; }
     public void setGold(int givenGold)                      { this._gold = givenGold; }
+    public void setTemperature(double giveTemperature)      { this._temperature = giveTemperature; }
     #endregion
 
     #region getter
@@ -54,7 +58,9 @@ public class C_Refrig : MonoBehaviour {
     public int getBattery()                                 { return this._battery; }
     public int getTouch()                                   { return this._touch; }
     public int getGold()                                    { return this._gold; }
+    public double getTemperature()                          { return this._temperature; }
     #endregion
+
     void renewalPower()
     {
         M_Walker.SendMessage("sendStep");
@@ -62,21 +68,25 @@ public class C_Refrig : MonoBehaviour {
         M_Player.SendMessage("sendPower");
         M_Player.SendMessage("CalcPowerwithStep",this._step);
         M_Player.SendMessage("CalcPowerwithTouch", this._touch);
-        M_Player.SendMessage("sendPower");
         V_Refrig.SendMessage("showPower",this._power);
     }
 
     void renewalBattery()
     {
-        DateTime _OldTime = this._CurrentTime;
         M_Walker.SendMessage("sendCurrentTime");
-        M_Refrigerator.SendMessage("CalcBattery", this._CurrentTime-_OldTime);
+        M_Refrigerator.SendMessage("CalcBattery", this._CurrentTime);
         V_Refrig.SendMessage("showBattery", this._battery);
     }
     void renewalGold()
     {
         M_Player.SendMessage("sendGold");
         V_Refrig.SendMessage("showGold", this._gold);
+    }
+    void renewalTemperature()
+    {
+        M_Walker.SendMessage("sendCurrentTime");
+        M_Refrigerator.SendMessage("CalcTemperature", this._CurrentTime);
+        V_Refrig.SendMessage("showTemperature", this._temperature);
     }
     void Clicker()
     {

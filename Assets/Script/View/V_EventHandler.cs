@@ -50,7 +50,8 @@ public class V_EventHandler : MonoBehaviour {
             }
             else
             {
-                Controller.SendMessage("Clicker");
+                if (Controller.name == "C_Refrig")
+                    Controller.SendMessage("Clicker");
             }
         }
     }

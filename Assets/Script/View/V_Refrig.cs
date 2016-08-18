@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System;
+
 
 public class V_Refrig : MonoBehaviour {
     public Text Gold;
     public Text Power;
     public Text Battery;
+    public Text Temparature;
 
     private GameObject SpecialPanel;
     private GameObject C_Serializer;
@@ -16,7 +16,6 @@ public class V_Refrig : MonoBehaviour {
     {
         SpecialPanel = GameObject.Find("POPUP_SCREEN");
         C_Serializer = GameObject.Find("C_Serializer");
-        C_Refrig = GameObject.Find("C_Refrig");
     }
 
     void SelectedObject(GameObject givenObject)
@@ -102,6 +101,11 @@ public class V_Refrig : MonoBehaviour {
     }
     void showBattery(int givenBattery)
     {
-        Battery.text = givenBattery.ToString();
+        Battery.text = givenBattery.ToString() + "%";
+    }
+    void showTemperature(double givenTemperature)
+    {
+        double TemperatureForShow = System.Math.Round(givenTemperature,2);
+        Temparature.text = TemperatureForShow.ToString("N1") +"℃";
     }
 }

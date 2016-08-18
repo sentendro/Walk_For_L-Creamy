@@ -14,7 +14,7 @@ public class M_Walker : MonoBehaviour
 
     private GameObject Controller;
     private GameObject C_Serializer;
-    private Walker CurrentWalker;
+    public Walker CurrentWalker;
 
     void Awake()
     {
@@ -40,6 +40,7 @@ public class M_Walker : MonoBehaviour
         ControllerCheck();
         stepDetector();
         CurrentWalker.setCurrentTime(DateTime.Now);
+        CurrentWalker.sec = CurrentWalker.getCurrentTime().Second;
     }
 
     void Clicker()
@@ -91,6 +92,11 @@ public class M_Walker : MonoBehaviour
         if (GameObject.Find("C_Shop") != null) Controller = GameObject.Find("C_Shop");
         if (GameObject.Find("C_MyPage") != null) Controller = GameObject.Find("C_MyPage");
     }
+    public void setUp(Walker prevWalker)
+    {
+        CurrentWalker.setStep(prevWalker.getStep());
+        CurrentWalker.setTouch(prevWalker.getTouch());
+    }
 }
 
 [Serializable]
@@ -98,7 +104,8 @@ public class Walker
 {
     private int _step;
     private int _touch;
-    private DateTime _CurrentTime;
+    public DateTime _CurrentTime;
+    public int sec;
 
     #region setter
     public void setStep(int step)                     { this._step = step; }
@@ -111,14 +118,6 @@ public class Walker
     public int getTouch()                               { return this._touch; }
     public DateTime getCurrentTime()                    { return this._CurrentTime; }
     #endregion
-
-
-    public void setUp(Walker prevWalker)
-    {
-        this._step = prevWalker.getStep();
-        this._touch = prevWalker.getTouch();
-
-    }
 
     public void stepUp()
     {
