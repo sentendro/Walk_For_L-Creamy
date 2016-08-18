@@ -10,11 +10,13 @@ public class V_Refrig : MonoBehaviour {
 
     private GameObject SpecialPanel;
     private GameObject C_Serializer;
+    private GameObject C_Refrig;
 
     void Awake()
     {
         SpecialPanel = GameObject.Find("POPUP_SCREEN");
         C_Serializer = GameObject.Find("C_Serializer");
+        C_Refrig = GameObject.Find("C_Refrig");
     }
 
     void SelectedObject(GameObject givenObject)
@@ -54,11 +56,11 @@ public class V_Refrig : MonoBehaviour {
                 SpecialPanel.transform.GetChild(0).gameObject.SetActive(true);
                 SpecialPanel.transform.GetChild(2).gameObject.SetActive(true);
                 break;
-            case "LCreamyInfo":
+            case "Prize":
                 SpecialPanel.transform.GetChild(0).gameObject.SetActive(true);
                 SpecialPanel.transform.GetChild(3).gameObject.SetActive(true);
                 break;
-            case "BatteryInfo":
+            case "Dictionary":
                 SpecialPanel.transform.GetChild(0).gameObject.SetActive(true);
                 SpecialPanel.transform.GetChild(4).gameObject.SetActive(true);
                 break;
@@ -78,11 +80,11 @@ public class V_Refrig : MonoBehaviour {
                 SpecialPanel.transform.GetChild(2).gameObject.SetActive(false);
                 SpecialPanel.transform.GetChild(0).gameObject.SetActive(false);
                 break;
-            case "exitLCreamyInfo":
+            case "exitPrize":
                 SpecialPanel.transform.GetChild(3).gameObject.SetActive(false);
                 SpecialPanel.transform.GetChild(0).gameObject.SetActive(false);
                 break;
-            case "exitBatteryInfo":
+            case "exitDictionary":
                 SpecialPanel.transform.GetChild(4).gameObject.SetActive(false);
                 SpecialPanel.transform.GetChild(0).gameObject.SetActive(false);
                 break;

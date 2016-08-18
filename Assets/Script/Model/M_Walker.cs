@@ -4,9 +4,6 @@ using System;
 
 public class M_Walker : MonoBehaviour
 {
-    private float _step;
-    private float _time;
-    private int _touch;
     private float _loLim = 0.005F;
     private float _hiLim = 0.3F;
     private bool stateH = false;
@@ -14,30 +11,15 @@ public class M_Walker : MonoBehaviour
     private float _curAcc = 0F;
     private float _fLow = 0.2F;
     private float _avgAcc;
-    float deltaTime;
 
     private GameObject Controller;
     private GameObject C_Serializer;
-    #region setter
-    public void setStep(float step) { this._step = step; }
-    public void setTouch(int touch) { this._touch = touch; }
-    public void setTime(float time) { this._time = time; }
-    #endregion
+    private Walker CurrentWalker;
 
-    #region getter
-    public float getStep() { return this._step; }
-    public int getTouch() { return this._touch; }
-    public float getTime() { return this._time; }
-    #endregion
-    public void setUp(M_Walker prevWalker)
-    {
-        this._step = prevWalker.getStep();
-        this._touch = prevWalker.getTouch();
-        this._time = prevWalker.getTime();
-    }
     void Awake()
     {
         C_Serializer = GameObject.Find("C_Serializer");
+        CurrentWalker = new Walker();
     }
     void Start()
     {
@@ -47,10 +29,9 @@ public class M_Walker : MonoBehaviour
         }
         else
         {
-            this._step = 0;
-            this._time = 0;
-            this.deltaTime = 0;
-            this._touch = 0;
+            CurrentWalker.setStep(0);
+            CurrentWalker.setCurrentTime(DateTime.Now);
+            CurrentWalker.setTouch(0);
         }
     }
 
@@ -58,22 +39,29 @@ public class M_Walker : MonoBehaviour
     {
         ControllerCheck();
         stepDetector();
-        deltaTime += Time.deltaTime;
-        this._time = (int)deltaTime;
+        CurrentWalker.setCurrentTime(DateTime.Now);
     }
+
+    void Clicker()
+    {
+        CurrentWalker.setTouch(CurrentWalker.getTouch() + 1);
+    }
+
+    #region sender
     void sendStep()
     {
-        Controller.SendMessage("setStep",((int) this._step));
+        Controller.SendMessage("setStep",CurrentWalker.getStep());
     }
     void sendTouch()
     {
-        Controller.SendMessage("setTouch", ((int)this._touch));
+        Controller.SendMessage("setTouch", CurrentWalker.getTouch());
     }
 
-    void getTime(C_Refrig script)
+    void sendCurrentTime()
     {
-        script.setTime((int) this._time);
+        Controller.SendMessage("setCurrentTime",CurrentWalker.getCurrentTime());
     }
+    #endregion
 
     public void stepDetector()
     {
@@ -85,8 +73,8 @@ public class M_Walker : MonoBehaviour
             if (delta > _hiLim)
             {
                 stateH = true;
-                this._step++;
-            }
+                CurrentWalker.stepUp();
+             }
         }
         else {
             if (delta < _loLim)
@@ -102,5 +90,38 @@ public class M_Walker : MonoBehaviour
         if (GameObject.Find("C_Refrig") != null) Controller = GameObject.Find("C_Refrig");
         if (GameObject.Find("C_Shop") != null) Controller = GameObject.Find("C_Shop");
         if (GameObject.Find("C_MyPage") != null) Controller = GameObject.Find("C_MyPage");
+    }
+}
+
+[Serializable]
+public class Walker
+{
+    private int _step;
+    private int _touch;
+    private DateTime _CurrentTime;
+
+    #region setter
+    public void setStep(int step)                     { this._step = step; }
+    public void setTouch(int touch)                     { this._touch = touch; }
+    public void setCurrentTime(DateTime CurrentTime)    { this._CurrentTime = CurrentTime; }
+    #endregion
+
+    #region getter
+    public int getStep()                              { return this._step; }
+    public int getTouch()                               { return this._touch; }
+    public DateTime getCurrentTime()                    { return this._CurrentTime; }
+    #endregion
+
+
+    public void setUp(Walker prevWalker)
+    {
+        this._step = prevWalker.getStep();
+        this._touch = prevWalker.getTouch();
+
+    }
+
+    public void stepUp()
+    {
+        this._step++;
     }
 }

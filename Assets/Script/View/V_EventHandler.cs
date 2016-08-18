@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class V_EventHandler : MonoBehaviour {
     GameObject C_SceneController;
+    public GameObject Controller;
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
@@ -13,8 +14,16 @@ public class V_EventHandler : MonoBehaviour {
     }
     void Update()
     {
+        this.ControllerCheck();
         Click();
         Slide();
+    }
+    void ControllerCheck()
+    {
+        if (GameObject.Find("C_Logo") != null) Controller = GameObject.Find("C_Logo");
+        if (GameObject.Find("C_Refrig") != null) Controller = GameObject.Find("C_Refrig");
+        if (GameObject.Find("C_Shop") != null) Controller = GameObject.Find("C_Shop");
+        if (GameObject.Find("C_MyPage") != null) Controller = GameObject.Find("C_MyPage");
     }
     private void Click()
     {
@@ -23,6 +32,7 @@ public class V_EventHandler : MonoBehaviour {
             if (EventSystem.current.currentSelectedGameObject != null)
             {
                 GameObject SelectedObject = EventSystem.current.currentSelectedGameObject;
+                Debug.Log(SelectedObject.name);
                 if (SelectedObject.tag == "Button")
                 {
                     C_SceneController.SendMessage("SceneMove", SelectedObject.name);
@@ -37,9 +47,11 @@ public class V_EventHandler : MonoBehaviour {
                     GameObject View = GameObject.Find("V_Shop");
                     View.SendMessage("SelectedObject", SelectedObject);
                 }
-
             }
-
+            else
+            {
+                Controller.SendMessage("Clicker");
+            }
         }
     }
 
